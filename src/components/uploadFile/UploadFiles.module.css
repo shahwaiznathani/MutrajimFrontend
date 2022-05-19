@@ -1,0 +1,67 @@
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    justify-content: center;
+}
+
+.top {
+    height: 80%;
+    width: 70%; 
+    background: rgb(243,243,243);
+    background: linear-gradient(90deg, rgba(243,243,243,1) 0%, rgba(215,127,85,1) 50%, rgba(255,255,255,1) 100%);
+    margin: auto;
+    align-items: center;
+}
+
+.uploadFile {
+    padding-top: 3%;
+    text-align: center;  
+    color: white;
+}
+
+.fileSetting {
+    text-align: center;
+    color: white;
+    margin-bottom: 4%;
+}
+
+.pictureBox {
+    height: 60%;
+    width: 70%;
+    border: 2px rgb(69, 69, 122) dashed;
+    margin: auto;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.picture {
+    height: 36%;
+    width: 17%;
+    display: block;
+    margin: auto;
+}
+
+.browseFile {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.uploadMessage {
+    padding-bottom: 2%;
+}
+
+.selectFormat {
+    align-self: center;
+    margin: auto;
+    width: 25%;
+    font-size: 12px;
+}
+
+/* .button {
+    /* margin-top: 20%; */
+/* }  */
+
+.drop {
+    height: 20px;
+}

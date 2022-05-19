@@ -1,0 +1,114 @@
+.mainBox{
+  margin: 0;
+  padding: 0;
+  background-color: #21201E;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25%;
+}  @media screen and (max-width: 600px) {
+  .mainBox {
+    margin-left: 0%;
+  }
+}
+
+.backdrop{
+position: absolute;
+width: 50%;
+height: 133%;
+left: -210px;
+top: -357.55px;
+
+background-color: rgb(44,44,46);
+transform: rotate(53.45deg);
+box-shadow: 5px 5px 15px 4px rgba(0, 0, 0, 0.25);
+}@media screen and (max-width: 600px) {
+  .backdrop {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
+
+.picturebox{
+  background-color: #141311;
+  position: absolute;
+  width: 72%;
+  height: 45%;
+  left: 25%;
+  top: 18%;
+  transform: rotate(-53.45deg);
+}@media screen and (max-width: 600px) {
+.picturebox {
+  visibility: hidden;
+  clear: both;
+  float: left;
+  margin: 10px auto 5px 20px;
+  width: 28%;
+  display: none;
+}
+}
+
+.textbox{
+  position: absolute;
+  width: 40%;
+  height: 51%;
+  left: 12%;
+  top: 49%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px 4px rgba(0, 0, 0, 0.25);
+ background-color: rgba( 255,255, 255, 0.1); /* transparent white */
+ color:white;
+}@media screen and (max-width: 600px) {
+  .textbox {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
+
+.bigName{
+  font-size: 300%;
+  color: #DC9573;
+  margin-left: 45%;
+  margin-top: 15%;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  letter-spacing: 10%;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.smalltext{
+  color: #fff;
+  margin-top: 6%;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  font-weight: 100%;
+  font-size: 300%;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 80%;   
+}
+
+.dropDown{
+align-self: left;
+justify-content: left;
+padding: 10px 30px 10px 30px;
+background-color: #DC9573;
+text-decoration: none;
+text-align: center;
+border: none;
+color: #fff;
+border-radius: 5px;
+margin-left: 30%;
+}
