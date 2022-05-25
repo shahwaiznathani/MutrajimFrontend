@@ -43,8 +43,6 @@ class Abc extends Component {
                 <Route path='home/keyPage' element={<ProtectedRoute token={this.state?.token} Element={Keypage} />} />
                 <Route path='home/download' element={<ProtectedRoute token={this.state?.token} Element={DownloadPage} />} />
                 <Route path ='home/InvitePeople' element={<ProtectedRoute token={this.state?.token} Element={InvitePeople} />} />
-
-
             </Routes>
         )
     }

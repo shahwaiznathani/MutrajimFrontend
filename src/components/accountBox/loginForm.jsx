@@ -49,9 +49,12 @@ export function LoginForm(props) {
       then(result => {
         console.log(result);
         sessionStorage.setItem('UserName', userName);
+        sessionStorage.setItem('UserId', result.data.id);
         localStorage.setItem("token", result.data.token);
         console.log(userName)
+        //stroing user id and name in session storage
         console.log(sessionStorage.getItem('UserName'))
+        console.log(sessionStorage.getItem('UserId'))
         console.log(result.data);
         console.log(result.status);
         if (result.status === 200) {

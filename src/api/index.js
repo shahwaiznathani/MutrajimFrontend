@@ -4,8 +4,11 @@ const BASE_URL = 'http://localhost:12107/api/';
 export const ENDPOINTS = {
     LOGIN: 'ApplicationUser/Login',
     REGISTER: 'ApplicationUser/UserRegister',
+    PATCHFILEID:'ApplicationUser/UpdateFileId',
+    PATCHLOCALEID:'ApplicationUser/UpdateLocaleId',
     PROJECT: 'Project',
     FILEUPLOAD: 'FileUpload/upload',
+    FILESETTING:'FileUpload/PostFileSetting',
     TRANSLATION: 'Translation',
     KEYDISPLAY : 'FileUpload/extract?subDirectory=FileStorage',
     FILEDATAPUT : 'Translation/NewKeyValue?subDirectory=FileStorage',
