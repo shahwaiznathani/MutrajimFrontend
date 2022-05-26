@@ -16,7 +16,7 @@ export default function SetupLanguage() {
     const [tName, settName] = useState('');
   
     const data = {SourceLanguage:sourceLanguage, TargetLanguage:targetLanguage, SourceLanguageName:sName, TargetLanguageName:tName};
-    const myLanguagePage = () => {createApiEndpoint(ENDPOINTS.PROJECT).create(data).
+    const myLanguagePage = () => {createApiEndpoint(ENDPOINTS.LOCALESET).create(data).
     then(res => {
       console.log(res);
     }).

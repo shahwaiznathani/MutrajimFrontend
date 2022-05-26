@@ -6,7 +6,7 @@ export const ENDPOINTS = {
     REGISTER: 'ApplicationUser/UserRegister',
     PATCHFILEID:'ApplicationUser/UpdateFileId',
     PATCHLOCALEID:'ApplicationUser/UpdateLocaleId',
-    PROJECT: 'Project',
+    LOCALESET: 'Locale',
     FILEUPLOAD: 'FileUpload/upload',
     FILESETTING:'FileUpload/PostFileSetting',
     TRANSLATION: 'Translation',
