@@ -14,16 +14,30 @@ export default function SetupLanguage() {
     const [targetLanguage, setTargetLanguage] = useState('');
     const [sName, setsName] = useState('');
     const [tName, settName] = useState('');
+    const [userId, SetUserId] = useState("");
+    const [localeId, SetLocaleId] = useState("");
   
+    //Post Locale Settings To Database
     const data = {SourceLanguage:sourceLanguage, TargetLanguage:targetLanguage, SourceLanguageName:sName, TargetLanguageName:tName};
     const myLanguagePage = () => {createApiEndpoint(ENDPOINTS.LOCALESET).create(data).
     then(res => {
       console.log(res);
+      SetLocaleId(res.data.id)
+      console.log(res.data.id)
     }).
-    catch(err => console.log(err) )}
+    catch(err => console.log(err) )
+
+}
 
     const context = useContext(Context);
-
+    //update locale id in user table (FK)
+    SetUserId(sessionStorage.getItem('UserId'))
+    const patchdata = {UserId:userId, LocaleId:localeId};   
+    createApiEndpoint(ENDPOINTS.PATCHLOCALEID).create(patchdata).
+          then(res => {
+            console.log(res.data);
+          }).
+          catch(err => console.log(err) ) 
     return (
         <div className = {styles.top}>
             <Header/>

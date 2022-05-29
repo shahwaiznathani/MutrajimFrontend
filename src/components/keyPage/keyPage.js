@@ -71,6 +71,7 @@ export default function Keypage() {
   }
   const SelectItem = (id, key, value) => {
      setSelectedValue(value)
+    //  console.log(value)
      setSelectedItem({id, key, value})
   }
   //API to update DB
@@ -83,7 +84,7 @@ export default function Keypage() {
         console.log(err);
       }
      )}
-
+    //this input is showing previous selection
     // API Work for ML integration
      var raw = JSON.stringify({
        'input': selectedValue
@@ -97,7 +98,8 @@ export default function Keypage() {
     const GetMlValue = () => axios.post('http://localhost:9090/predict',raw,requestOptions)
     .then(response => response)
     .then(result => {
-      console.log(key)
+      console.log()
+      console.log(raw)
       const mdata = result.data['response']
       const len = result.data['response'].length
       // if(len==3){
@@ -105,7 +107,7 @@ export default function Keypage() {
       // }
       // console.log(result.data['response'])
       // // setMlData(JSON.stringify(result.data))
-      console.log(mdata[1])
+      console.log(mdata)
     })
     .catch(error => console.log('error', error));
 
