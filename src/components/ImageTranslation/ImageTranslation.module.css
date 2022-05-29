@@ -1,0 +1,99 @@
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.container {
+    height: 80%;
+    width: 100%;
+    margin: auto;
+    background: rgb(243,243,243);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgb(224, 148, 115) 50%, rgba(255,255,255,1) 100%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.translateContainer {
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.imageContainer {
+    background-color: rgb(221, 221, 221);
+    height: 100%;
+    width: 40%;
+    margin-top: 3%;
+    border: solid white 5px;
+    border-radius: 5px;
+    object-fit: fill;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+}
+
+.textContainer {
+    background-color: rgb(221, 221, 221);
+    height: 100%;
+    width: 40%;
+    margin-top: 3%;
+    text-align: center;
+    border: solid white 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.textContainerText {
+    width: 100%;
+    height: 50%;
+    border-bottom: 5px solid white;
+}
+
+.textContainerSuggestion {
+
+    width: 100%;
+    height: 50%;
+}
+
+.animatedText {
+    background-color: inherit;
+    color: rgb(57, 57, 57);
+    font-size: 30px;
+}
+
+.submit {
+    height: 7%;
+    width: 10%;
+}
+
+.submitButton {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(254, 164, 125);
+    border-radius: 10px;
+}
+
+.submitButton:hover {
+    cursor: pointer;
+}
+
+.dropDown{
+    align-self: left;
+    justify-content: left;
+    padding: 10px 30px 10px 30px;
+    background-color: #DC9573;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 87%;
+    margin-top: 0.5%;
+}

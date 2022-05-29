@@ -5,11 +5,15 @@ import { FormattedMessage } from "react-intl";
  
 import LanguageIcon from '@mui/icons-material/Language';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ImageIcon from '@mui/icons-material/Image';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import SetupLanguage from "../setupLanguage/SetupLanguage";
 import { Context } from '../wrapper/Wrapper.js';
  
 import styles from './home.module.css';
 import Header from '../header/header.js'
+
+
  
  
  
@@ -95,11 +99,42 @@ const Home = () =>{
                 <Box component = "span" className={styles.box2}>
                     <div className = {styles.boxTop}>
                         <FormattedMessage
+                            id = "home.uploadImage"
+                        /> 
+                    </div>
+ 
+                    <div className = {styles.boxUMid}>
+                    <div className = {styles.icon}>
+                        <ImageIcon className={styles.langIcon} sx={{ fontSize: 120 }}/>
+                    </div>
+                    </div>
+ 
+                    <div className = {styles.boxLMid}>
+                        <FormattedMessage
+                            id = "home.uploadImageText"
+                        /> 
+                    </div>
+ 
+                    <div className = {styles.boxBottom}>
+                    <button className = {styles.bottomButton}><Link to='/home/UploadImages' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <FormattedMessage
+                            id = "home.uploadImage"
+                        />     
+                    </Link></button>
+                    </div>
+                </Box>
+
+                <Box component = "span" className={styles.box2}>
+                    <div className = {styles.boxTop}>
+                        <FormattedMessage
                             id = "home.nextSteps"
                         /> 
                     </div>
  
                     <div className = {styles.boxUMid}>
+                        <div className = {styles.icon}>
+                            <GroupAddIcon className={styles.langIcon} sx={{ fontSize: 120 }}/>
+                        </div>
                         <p>
                             <FormattedMessage
                                 id = "home.recommendation"
@@ -126,17 +161,17 @@ const Home = () =>{
  
                     </div>
  
-                    <div className = {styles.boxLMid}>
+                    {/* <div className = {styles.boxLMid}>
                        
-                    </div>
+                    </div> */}
  
-                    <div className = {styles.boxBottom}>
-                        <Link to='/home' className={styles.bottomButton}>
+                    {/* <div className = {styles.boxBottom}>
+                        <Link to='/home/SetupLanguage' className={styles.bottomButton}>
                             <FormattedMessage
                                 id = "home.setupEditor"
                             /> 
                         </Link>
-                    </div>
+                    </div> */}
                 </Box>
             </div>
         </div>

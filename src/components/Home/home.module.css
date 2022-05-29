@@ -30,7 +30,7 @@
 .box1{
     display: inline-block;
     margin-left: 13.5%;
-    width: 23%;
+    width: 25%;
     height: 100%;
     margin-bottom: 3%;
     background-color: white;
@@ -42,7 +42,7 @@
 .box2{
     display: inline-block;
     margin-left: 2%;
-    width: 23%;
+    width: 25%;
     height: 100%;
     margin-bottom: 3%;
     background-color: white;
@@ -56,7 +56,7 @@
     margin-top: -50%;
     display: inline-block;
     margin-left: 2%;
-    width: 23%;
+    width: 25%;
     height: 100%;
     margin-bottom: 3%;
     background-color: white;
@@ -67,8 +67,9 @@
 .temp{
     margin-top: 2%;
     height: 70%;
-    width: 100%;
-    display: inline-block;
+    width: 85%;
+    justify-content: center;
+    display: flex;
     background-color: #fff;
     /* margin-bottom: 80%; */
 }

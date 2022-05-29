@@ -24,7 +24,7 @@
 
     "header.title": "مترجم",
     "header.referUs": "ہم سے رجوع کریں۔",
-    "header.translate": "نوکریاں",
+    "header.jobs": "نوکریاں",
     "header.invitePeople": "لوگوں کو مدعو کریں۔",
     "header.help": "مدد",
     "header.user": "صارف",
@@ -35,11 +35,13 @@
     "header.logout": "لاگ آوٹ",
 
     "home.start": "آئیے آپ کا نیا پروجیکٹ ترتیب دیں۔",
-    "home.followSteps": "اٹھنے اور جلدی سے چلانے کے لیے ان تین مراحل پر عمل کریں۔",
+    "home.followSteps": "اپنی ایپلیکیشن کلچر کو دوستانہ بنانے کے لیے ان چار مراحل پر عمل کریں۔",
     "home.setupLanguages": "زبانیں ترتیب دیں۔",
     "home.setupLanguageText": "ایک زبان میں ایک مقامی کوڈ شامل ہونا ضروری ہے۔ لوکیل ایک خطہ، تاریخ کی شکل، اور کرنسی کی وضاحت کرتا ہے۔",
     "home.uploadFile": "ایک فائل اپ لوڈ کریں۔",
+    "home.uploadImage": "تصویر اپ لوڈ کریں",
     "home.uploadFileText": "فائل میں وہ چابیاں ہونی چاہئیں جو جملے میں درآمد کرنا چاہیں گی۔ ہم فائل فارمیٹس کی ایک وسیع رینج کو سپورٹ کرتے ہیں۔",
+    "home.uploadImageText": "تصویر وہ ہونی چاہیے جس میں آپ کا متن ہے جسے آپ ایک مقام سے دوسرے میں تبدیل کرنا چاہتے ہیں۔ ہم تصویری فارمیٹس کی وسیع رینج کی حمایت کرتے ہیں۔",
     "home.nextSteps": "اگلے مراحل",
     "home.recommendation": "ہم فقرے سے خود کو واقف کرنے کے لیے درج ذیل اقدامات میں سے ایک کو آزمانے کی تجویز کرتے ہیں۔",
     "home.collaborate": "دوسروں کے ساتھ تعاون کریں۔",
@@ -60,6 +62,11 @@
     "uploadFiles.format": "فارمیٹ",
     "uploadFiles.upload": "اپ لوڈ کریں۔",
 
+    "uploadImages.uploadImage": "تصویر اپ لوڈ کریں۔",
+    "uploadImage.imageSettings": "تصویر اور ترتیبات",
+    "uploadImage.image": "جس تصویر کو آپ اپ لوڈ کرنا چاہتے ہیں اسے براؤز کریں۔",
+    "uploadImage.imageUpload": "تصویر کی توسیع کا انتخاب کریں جسے آپ اپ لوڈ کرنا چاہتے ہیں۔ ہم تمام عام فائل فارمیٹس کو سپورٹ کرتے ہیں۔",
+
     "keyPage.showData": "ڈیٹا دکھائیں۔",
     "keyPage.index": "انڈیکس",
     "keyPage.key": "چابی",
@@ -70,5 +77,10 @@
     "download.congrats": "مبارک ہو! آپ کی فائل کا کامیابی کے ساتھ ترجمہ کیا گیا ہے۔",
     "download.thanks": "مترجم کو منتخب کرنے کا شکریہ!",
     "download.finalFiles": "آپ کی فائنل فائلز",
-    "download.downloadFile": "فائل ڈاؤن لوڈ کریں"
+    "download.downloadFile": "فائل ڈاؤن لوڈ کریں",
+
+    "imageTranslation.textImage": "تصویر سے متن",
+    "imageTranslation.suggestion": "مشورہ",
+    "imageTranslation.textExtraction": "تصویر سے متن نکالنا",
+    "imageTranslation.nextButton": "آگے"
 }
