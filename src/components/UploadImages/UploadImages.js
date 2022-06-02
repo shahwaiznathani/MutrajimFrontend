@@ -10,18 +10,46 @@ import styles from './UploadImages.module.css';
 import Header from '../header/header';
 import uploadFilePicture from './upload.png';
 import ImageTranslation from '../ImageTranslation/ImageTranslation.js';
+import { createApiEndpoint, ENDPOINTS } from "../../api";
+import axios from 'axios';
 
 
 export default function UploadImages () {
     const navigate = useNavigate();
     const [state, setState] = useState('idle');
+    const [selectedFile, setSelectedFile] = useState();
+    const [Name, setFileName] = useState("");
+    const [Type, setFileType] = useState("");
+  
+      
+
+    const handleSubmit = (e) => {
+    //   e.preventDefault();
+      const data = new FormData();
+      data.append('file', selectedFile);
+      console.log(selectedFile);
+      console.log(data);
+      //Image translation api
+     axios.post('http://127.0.0.1:5000/read', data)
+        .then(response => response)
+        .then(result => {
+            console.log(JSON.stringify(result.data));
+        })
+        .catch(error => console.log('error', error));
+
+    }
+    const handleFileSelect = (event) => {
+      setSelectedFile(event.target.files[0]);
+      setFileName(event.target.files[0].name);
+      setFileType(event.target.files[0].type);
+    }
 
     const onClickHandler = () => {
         setState('loading');
         setTimeout(() => {
             setState('success');
         }, 2000);
-        navigate ("/home/ImageTranslation");
+        // navigate ("/home/ImageTranslation");
     }
 
     const context = useContext(Context);
@@ -47,18 +75,19 @@ export default function UploadImages () {
                 </p>
                 <div className = {styles.pictureBox}>
                     <img src = {uploadFilePicture} alt = "upload File" className = {styles.picture}/>
-                    <p className= {styles.browseFile}><a href=" ">
+                    <p className= {styles.browseFile}>
                         <FormattedMessage
                             id = "uploadImage.image"
                         />    
-                    </a></p>
+                    </p>
 
                     <br/>
+                    <input type="file" onChange = {handleFileSelect}/> 
                     <ReactiveButton
                         className = {styles.button} 
                         idleText={'Upload Files'}
                         buttonState={state}
-                        onClick={onClickHandler}
+                        onClick={()=> {onClickHandler(); handleSubmit();}}
                         loadingText={'Uploading'}
                         color={'#d09072'}
                     />
@@ -66,11 +95,6 @@ export default function UploadImages () {
                 </div>
 
             </div>
-
-            <select className = {styles.dropDown} value = {context.locale} onChange={context.selectLang}>
-                <option value = "en">English</option>
-                <option value = "ur">Urdu</option>
-            </select> 
         </div>
     )
 }

@@ -26,15 +26,19 @@ export default function UploadFiles () {
 
 
     const [selectedFile, setSelectedFile] = useState();
+    const [Name, setFileName] = useState("");
+    const [Type, setFileType] = useState("");
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
+    const handleSubmit = (e) => {
+    //   e.preventDefault();
       const formData = new FormData();
       formData.append('file', selectedFile);
       console.log(selectedFile);
       console.log(formData);
+      var uid = '';
+      var id = 0;
      
-      //upload file to directory
+      //Upload File To Directory
       createApiEndpoint(ENDPOINTS.FILEUPLOAD).create(formData, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -43,8 +47,17 @@ export default function UploadFiles () {
               console.log(res);
       }).catch(err => console.log(err) )
 
-      const filepath = {SubDirectory:'FileStorgae'};
-      createApiEndpoint(ENDPOINTS.FILEDATAPUT).create(filepath).
+      //post file data in file setiing
+      const filedata = {name: Name, type: Type};
+      createApiEndpoint(ENDPOINTS.FILESETTING).create(filedata).
+            then(res => {
+            console.log(res.data);
+            }).
+            catch(err => console.log(err) )  
+
+
+      //Exract file data and add to database
+      createApiEndpoint(ENDPOINTS.FILEDATAPUT).create().
             then(res => {
               console.log(res.data);
             }).
@@ -53,6 +66,8 @@ export default function UploadFiles () {
 
     const handleFileSelect = (event) => {
       setSelectedFile(event.target.files[0]);
+      setFileName(event.target.files[0].name);
+      setFileType(event.target.files[0].type);
       console.log(event.target.files[0])
     }
 
@@ -65,7 +80,7 @@ export default function UploadFiles () {
         setTimeout(() => {
             setState('success');
         }, 2000);
-        handleSubmit();
+        // handleSubmit();
     }
 
 
@@ -95,7 +110,7 @@ export default function UploadFiles () {
                    
 
                     <p className= {styles.uploadMessage}>
-                        <FormattedMessage
+                        <FormattedMessage  
                             id = "uploadFiles.fileUpload"
                           />
                     </p>
@@ -106,7 +121,7 @@ export default function UploadFiles () {
                         className = {styles.button} 
                         idleText={'Upload Files'}
                         buttonState={state}
-                        onClick={onClickHandler}
+                        onClick={()=> {onClickHandler(); handleSubmit();}}
                         loadingText={'Uploading'}
                         color={'#D09072'}
                     />
