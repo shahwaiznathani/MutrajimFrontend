@@ -13,11 +13,11 @@ import { Link } from 'react-router-dom';
 
 
 const options = [
+    { value: 'json', label: 'Simple JSON (.json)' },
     { value: 'arb', label: 'ARB (.arb)' },
     { value: 'yml', label: 'Ruby (.yml)' },
     { value: 'po', label: 'Gettext (.po)' },
-    { value: 'xml', label: '.xml' },
-    { value: 'json', label: 'Simple JSON (.json)' }
+    { value: 'xml', label: '.xml' }
 ]
 
 
@@ -28,12 +28,13 @@ export default function UploadFiles () {
     const [selectedFile, setSelectedFile] = useState();
 
     const handleSubmit = (event) => {
-    //   event.preventDefault();
+      event.preventDefault();
       const formData = new FormData();
       formData.append('file', selectedFile);
       console.log(selectedFile);
       console.log(formData);
-     //const data = {formFiles:selectedFile};
+     
+      //upload file to directory
       createApiEndpoint(ENDPOINTS.FILEUPLOAD).create(formData, {
         headers: {
           "Content-Type": "multipart/form-data"

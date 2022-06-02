@@ -6,7 +6,7 @@ import AccountBox from "./components/accountBox/index";
 import Header from './components/header/header';
 import Home from './components/Home/home';
 import SetupLanguage from './components/setupLanguage/SetupLanguage';
-import UploadFiles from './components/uploadFiles/UploadFiles';
+import UploadFiles from './components/uploadFile/UploadFiles';
 import Keypage from './components/keyPage/keyPage';
 import DownloadPage from './components/downloadPage/downloadPage';
 import { Navigate } from 'react-router-dom';

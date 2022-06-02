@@ -7,37 +7,80 @@ import setupLanguage from './setupLanguage.png'
 import { useState } from "react";
 import { createApiEndpoint, ENDPOINTS } from "../../api";
 import { Context } from '../wrapper/Wrapper.js';
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function SetupLanguage() {
+    
+    //Notifier Settings
+    const navigate = useNavigate();
+    var toastMixin = Swal.mixin({
+        toast: true,
+        icon: 'success',
+        title: 'General Title',
+        animation: false,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+
     // API work to save languages
     const [sourceLanguage, setSourceLanguage] = useState('');
     const [targetLanguage, setTargetLanguage] = useState('');
     const [sName, setsName] = useState('');
     const [tName, settName] = useState('');
-    const [userId, SetUserId] = useState("");
-    const [localeId, SetLocaleId] = useState("");
-  
-    //Post Locale Settings To Database
+    var uid = '';
+    var lid = 0;
     const data = {SourceLanguage:sourceLanguage, TargetLanguage:targetLanguage, SourceLanguageName:sName, TargetLanguageName:tName};
-    const myLanguagePage = () => {createApiEndpoint(ENDPOINTS.LOCALESET).create(data).
-    then(res => {
-      console.log(res);
-      SetLocaleId(res.data.id)
-      console.log(res.data.id)
-    }).
-    catch(err => console.log(err) )
+    const postLanguageSettings = () => {
+        //Post Locale Settings To Database
+        if(sourceLanguage !== '' && targetLanguage !== '' && sName !== '' && tName !== ''){
+            createApiEndpoint(ENDPOINTS.LOCALESET).create(data).
+            then(res => {
+            console.log(res);
+            uid = sessionStorage.getItem('UserId')
+            lid = Number(res.data.settingId);
+            console.log(Number(res.data.settingId));
+            console.log(uid);
+            console.log("User Id  "+ uid + "Locale Id " + lid);  
+            //Patch Locale Id to User Table
+            createApiEndpoint(ENDPOINTS.PATCHLOCALEID).create({UserId:uid, LocaleId:lid}).
+                then(res => {
+                    console.log(res.data);
+                }).
+                catch(err => console.log(err) ) ;  
+        
+            }).
+            catch(err => console.log(err) );
+            success();
+        }
+        else{
+            error();
+        }
+} 
+    const success = () => {
+        toastMixin.fire({
+        animation: true,
+        title: 'Locale Updated!'
+        });
+        navigate('/home');
+    }
 
-}
+     const error = () => {
+        toastMixin.fire({
+        title: 'Insert all fields to continue!',
+        icon: 'error'
+        });
+    }
 
-    const context = useContext(Context);
-    //update locale id in user table (FK)
-    SetUserId(sessionStorage.getItem('UserId'))
-    const patchdata = {UserId:userId, LocaleId:localeId};   
-    createApiEndpoint(ENDPOINTS.PATCHLOCALEID).create(patchdata).
-          then(res => {
-            console.log(res.data);
-          }).
-          catch(err => console.log(err) ) 
+
+    // const context = useContext(Context);
+    
     return (
         <div className = {styles.top}>
             <Header/>
@@ -82,7 +125,7 @@ export default function SetupLanguage() {
                 </div>
 
                 <div className= {styles.submitButtonContainer}>
-                    <button onClick={myLanguagePage} className={styles.submitButton}><Link to='/home' style={{ color: 'inherit', textDecoration: 'none'}}>
+                    <button onClick={()=>{postLanguageSettings();}} className={styles.submitButton}><Link to='' style={{ color: 'inherit', textDecoration: 'none'}}>
                         Submit
                     </Link></button>
                 </div>

@@ -71,7 +71,6 @@ export default function Keypage() {
   }
   const SelectItem = (id, key, value) => {
      setSelectedValue(value)
-    //  console.log(value)
      setSelectedItem({id, key, value})
   }
   //API to update DB
@@ -84,8 +83,8 @@ export default function Keypage() {
         console.log(err);
       }
      )}
-    //this input is showing previous selection
-    // API Work for ML integration
+  
+    //API Work for ML integration and its parsing
      var raw = JSON.stringify({
        'input': selectedValue
      });
@@ -98,16 +97,18 @@ export default function Keypage() {
     const GetMlValue = () => axios.post('http://localhost:9090/predict',raw,requestOptions)
     .then(response => response)
     .then(result => {
-      console.log()
       console.log(raw)
       const mdata = result.data['response']
-      const len = result.data['response'].length
-      // if(len==3){
-      setMlData(mdata[1])
-      // }
-      // console.log(result.data['response'])
-      // // setMlData(JSON.stringify(result.data))
-      console.log(mdata)
+      const len = mdata.length
+      console.log(len)
+      //filtering data to remove tags
+      var filteredMData = mdata.slice(1, mdata.length - 1);
+      //joining data to formulate a sentence  
+      var str=filteredMData.join(' ');
+      //Removing Non-Ascii characters from the string
+      var ustr = str.normalize('NFD').replace(/[\u2580-\u259F]/g, '');; 
+      setMlData(ustr)
+      console.log(ustr)
     })
     .catch(error => console.log('error', error));
 
@@ -147,10 +148,10 @@ export default function Keypage() {
                         <input value={selectedItem?.key || ''}disabled className = {styles.ToptextBox} onChange ={t => setKey(t.target.value)} type="text" placeholder="Key" />
                         <Marginer direction="vertical" margin="0.6em" />
 
-                      <div className= {styles.suggestionText}>
+                      {/* <div className= {styles.suggestionText}> */}
                         {/* ML input box */}
                         <input value={MlData} disabled className = {styles.suggestion} onChange ={t => setMlData(t.target.value)} type="text" placeholder = "suggestion"></input>
-                      </div>
+                      {/* </div> */}
 
                          <Marginer direction="vertical" margin="0.6em" />
                         <input value={selectedValue} className = {styles.BottomtextBox} onChange ={t => {setSelectedValue(t.target.value); }} type="text" placeholder="Value" />
