@@ -24,11 +24,12 @@ export default function UploadImages () {
       
 
     const handleSubmit = (e) => {
-    //   e.preventDefault();
       const data = new FormData();
+      
       data.append('file', selectedFile);
       console.log(selectedFile);
       console.log(data);
+
       //Image translation api
      axios.post('http://127.0.0.1:5000/read', data)
         .then(response => response)

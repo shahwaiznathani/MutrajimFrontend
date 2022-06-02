@@ -59,7 +59,7 @@
     "uploadFiles.uploadFile": "Upload File",
     "uploadFiles.fileSettings": "File & Settings",
     "uploadFiles.file": "Browse for the file you want to upload",
-    "uploadFiles.fileUpload": "Select the extension of file you want to upload. We support all common file formats.",
+    "uploadFiles.fileUpload": "Select the extension of file you want to upload.",
     "uploadFiles.format": "Format",
     "uploadFiles.upload": "Upload",
 
