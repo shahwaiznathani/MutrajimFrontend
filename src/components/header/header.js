@@ -18,6 +18,7 @@ import {
 } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
+import { createApiEndpoint, ENDPOINTS } from "../../api";
 
  
 const menuClassName = ({ state }) =>
@@ -37,6 +38,15 @@ const Header = () =>{
     const logout = ()=>{
         console.log("removed token")
         localStorage.removeItem("token");
+        createApiEndpoint(ENDPOINTS.DELETE).deleteAll().
+        then(response => {
+            console.log(response)
+          }).
+        catch(
+          err => {
+            console.log(err);
+          }
+         )
     }
     return (
             <div className = {styles.dashboard}>

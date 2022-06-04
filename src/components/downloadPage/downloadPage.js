@@ -10,7 +10,7 @@ import { createApiEndpoint, ENDPOINTS } from "../../api";
 import { UpdateDisabled } from '@mui/icons-material';
 
 export default function DownloadPage() {
-    // Delete API
+    // Delete Translation Table API
     const DeleteDataTable = () => {createApiEndpoint(ENDPOINTS.DELETE).deleteAll().
         then(response => {
             console.log(response)

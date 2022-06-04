@@ -152,11 +152,11 @@ const Home = () =>{
                             /> 
                         </p>
                         <br/>
-                        <button className={styles.bottomButton}>
+                        <button className={styles.bottomButton}><Link to='/home/InvitePeople' style={{ color: 'inherit', textDecoration: 'inherit'}}>
                             <FormattedMessage
                                 id = "home.inviteCowerkers"
                             /> 
-                        </button>
+                        </Link></button>
                         <br/>
  
                     </div>

@@ -62,8 +62,8 @@ export default function UploadFiles () {
                         console.log(res);
                 }).catch(err => console.log(err) );
 
-        //post file data in file setiing
-        const filedata = {name: Name, type: Type};
+            //post file data in file setiing
+            const filedata = {name: Name, type: Type};
             createApiEndpoint(ENDPOINTS.FILESETTING).create(filedata).
                 then(res => {
                     var uid = sessionStorage.getItem('UserId');
@@ -76,11 +76,12 @@ export default function UploadFiles () {
                         }).
                         catch(err => console.log(err) ) ;  
                     success();    
+                    onClickHandler();
                 }).
                 catch(err => console.log(err) )  
 
         
-        //Exract file data and add to database
+            //Exract file data and add to database
             createApiEndpoint(ENDPOINTS.FILEDATAPUT).create().
                 then(res => {
                 console.log(res.data);
@@ -116,7 +117,7 @@ export default function UploadFiles () {
         animation: true,
         title: 'File Upload Successful!'
         });
-        navigate('/home');
+        navigate('/home/keyPage');
     }
 
      const error = () => {
@@ -159,7 +160,7 @@ export default function UploadFiles () {
                         className = {styles.button} 
                         idleText={'Upload Files'}
                         buttonState={state}
-                        onClick={()=> {onClickHandler(); handleSubmit();}}
+                        onClick={()=> {handleSubmit();}}
                         loadingText={'Uploading'}
                         color={'#D09072'}
                     />

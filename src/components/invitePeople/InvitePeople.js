@@ -45,7 +45,7 @@ const InvitePeople = () => {
     const [body, SetBody] = useState('');
 
     //API NOT WORKING
-    const data = {ToEmail:email, Subject:'Invite To Mutrajim', Body:body};
+    const data = {ToEmail:email, Subject:'Invite To Mutrajim', Body:'http://localhost:3000/home/Translation'};
     const SendEmailAPI = () => {createApiEndpoint(ENDPOINTS.EMAIL).create(data).
       then(res => {
         console.log(res);
