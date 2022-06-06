@@ -74,26 +74,36 @@ export default function UploadFiles () {
                         then(res => {
                             console.log(res.data);
                         }).
-                        catch(err => console.log(err) ) ;  
+                        catch(err => console.log(err) ) ;
+                    fileDatatoDb();      
                     success();    
                     onClickHandler();
                 }).
                 catch(err => console.log(err) )  
 
-        
+            
             //Exract file data and add to database
-            createApiEndpoint(ENDPOINTS.FILEDATAPUT).create().
-                then(res => {
-                console.log(res.data);
-                }).
-                catch(err => console.log(err) )    
+            // createApiEndpoint(ENDPOINTS.FILEDATAPUT).create().
+            //     then(res => {
+            //     console.log(res.data);
+            //     console.log("here")
+            //     }).
+            //     catch(err => console.log(err) )    
         }
         else{
             error();
         }
       
     }
-
+    const fileDatatoDb = () => {
+        //Exract file data and add to database
+            createApiEndpoint(ENDPOINTS.FILEDATAPUT).create().
+                then(res => {
+                console.log(res.data);
+                console.log("here")
+                }).
+                catch(err => console.log(err) )    
+    }
     const handleFileSelect = (event) => {
       setSelectedFile(event.target.files[0]);
       setFileName(event.target.files[0].name);
@@ -155,15 +165,15 @@ export default function UploadFiles () {
                     </p>
 
                     <Select className = {styles.selectFormat} options={options} />
-
-                    <ReactiveButton shadow
-                        className = {styles.button} 
-                        idleText={'Upload Files'}
-                        buttonState={state}
-                        onClick={()=> {handleSubmit();}}
-                        loadingText={'Uploading'}
-                        color={'#D09072'}
-                    />
+                    <div className= {styles.buttonDiv}>
+                        <ReactiveButton shadow 
+                            idleText={'Upload Files'}
+                            buttonState={state}
+                            onClick={()=> {handleSubmit();}}
+                            loadingText={'Uploading'}
+                            color={'#D09072'}
+                        />
+                    </div>
 
                 </div>
 

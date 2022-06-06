@@ -89,7 +89,7 @@
 }
 
 .ToptextBox{
-    padding: 15% 0px 15% 0px;
+    padding: 10% 0px 10% 0px;
     font-size: 250%;
     text-align: center;
     border-right: 5px solid #D09072;
@@ -99,7 +99,7 @@
 }
 
 .BottomtextBox{
-    padding: 2% 0px 2% 0px;
+    padding: 20px 0px 20px 0px;
     font-size: 100%;
     text-align: center;
     border-right: 5px solid #D09072;
@@ -171,6 +171,8 @@
     text-align: center;
     border: 5px solid #D09072;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .suggestionView{
     display: flex;

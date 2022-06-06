@@ -101,3 +101,16 @@
     -moz-animation:spin 500ms linear infinite;
     animation:spin 500ms linear infinite;
 }
+
+.uploadImagesButton {
+    display: flex;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttonDiv {
+    margin-top: 2%;
+} 

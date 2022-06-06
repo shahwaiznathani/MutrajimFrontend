@@ -109,6 +109,7 @@ export default function UploadImages () {
                 </p>
                 <div className = {styles.pictureBox}>
                     <img src = {uploadFilePicture} alt = "upload File" className = {styles.picture}/>
+                    
                     <p className= {styles.browseFile}>
                         <FormattedMessage
                             id = "uploadImage.image"
@@ -116,15 +117,19 @@ export default function UploadImages () {
                     </p>
 
                     <br/>
-                    <input type="file" onChange = {handleFileSelect}/> 
-                    <ReactiveButton
-                        className = {styles.button} 
-                        idleText={'Upload Files'}
-                        buttonState={state}
-                        onClick={()=> { handleSubmit();}}
-                        loadingText={'Uploading'}
-                        color={'#d09072'}
-                    />
+                    <div className = {styles.uploadImagesButton}>
+                        <input type="file" onChange = {handleFileSelect}/> 
+                        <div className= {styles.buttonDiv}>
+                            <ReactiveButton
+                                className = {styles.button} 
+                                idleText={'Upload Files'}
+                                buttonState={state}
+                                onClick={()=> { handleSubmit();}}
+                                loadingText={'Uploading'}
+                                color={'#d09072'}
+                            />
+                        </div>
+                    </div>
 
                 </div>
 

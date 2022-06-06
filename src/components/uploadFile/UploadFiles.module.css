@@ -58,9 +58,9 @@
     font-size: 12px;
 }
 
-/* .button {
-    /* margin-top: 20%; */
-/* }  */
+.buttonDiv {
+    margin-top: 2%;
+} 
 
 .drop {
     height: 20px;
