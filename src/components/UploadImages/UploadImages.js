@@ -10,39 +10,58 @@ import styles from './UploadImages.module.css';
 import Header from '../header/header';
 import uploadFilePicture from './upload.png';
 import ImageTranslation from '../ImageTranslation/ImageTranslation.js';
-import { createApiEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios';
+import Logo from "../Logo/MutrajimStandAlone.png"
+import Swal from "sweetalert2";
 
 
 export default function UploadImages () {
+
+    //Notifier Settings
     const navigate = useNavigate();
+    var toastMixin = Swal.mixin({
+        toast: true,
+        icon: 'success',
+        title: 'General Title',
+        animation: false,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+
     const [state, setState] = useState('idle');
     const [selectedFile, setSelectedFile] = useState();
-    const [Name, setFileName] = useState("");
-    const [Type, setFileType] = useState("");
-  
+    const [loading, setLoading] = useState(false);
+    // const [extractedText, setExtractedText] = useState('');
       
 
     const handleSubmit = (e) => {
+
       const data = new FormData();
-      
       data.append('file', selectedFile);
       console.log(selectedFile);
       console.log(data);
-
+      setLoading(true);  
       //Image translation api
-     axios.post('http://127.0.0.1:5000/read', data)
+      axios.post('http://127.0.0.1:5000/read', data)
         .then(response => response)
         .then(result => {
             console.log(JSON.stringify(result.data));
+            // setExtractedText(JSON.stringify(result.data));
+            setLoading(false);
+            success(result.data);    
+            onClickHandler();  
         })
         .catch(error => console.log('error', error));
-
     }
     const handleFileSelect = (event) => {
       setSelectedFile(event.target.files[0]);
-      setFileName(event.target.files[0].name);
-      setFileType(event.target.files[0].type);
+      
     }
 
     const onClickHandler = () => {
@@ -50,7 +69,21 @@ export default function UploadImages () {
         setTimeout(() => {
             setState('success');
         }, 2000);
-        // navigate ("/home/ImageTranslation");
+    }
+
+    const success = (extractedText) => {
+        toastMixin.fire({
+        animation: true,
+        title: 'File Upload Successful!'
+        });
+        navigate('/home/ImageTranslation', {state: {selectedFile, extractedText}});
+    }
+
+     const error = () => {
+        toastMixin.fire({
+        title: 'File format not supported!',
+        icon: 'error'
+        });
     }
 
     const context = useContext(Context);
@@ -88,7 +121,7 @@ export default function UploadImages () {
                         className = {styles.button} 
                         idleText={'Upload Files'}
                         buttonState={state}
-                        onClick={()=> {onClickHandler(); handleSubmit();}}
+                        onClick={()=> { handleSubmit();}}
                         loadingText={'Uploading'}
                         color={'#d09072'}
                     />
@@ -96,6 +129,9 @@ export default function UploadImages () {
                 </div>
 
             </div>
+            {loading && <div className={styles.loaderView}>
+            <img className={styles.logoImg} src={Logo} />
+            </div>}
         </div>
     )
 }

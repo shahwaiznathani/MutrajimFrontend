@@ -7,7 +7,10 @@ import { useState } from "react";
 
 import { Context } from '../wrapper/Wrapper.js';
 import styles from './ImageTranslation.module.css';
-import test123 from './test123.png'
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import Logo from "../Logo/MutrajimStandAlone.png"
+
 
 const animatedStyles = {
     slideInUp: {
@@ -17,7 +20,40 @@ const animatedStyles = {
   }
 
 const ImageTranslation = () => {
+    //Use uploaded file and extracted text from navigated page
     const context = useContext(Context);
+    const location = useLocation();
+    const {selectedFile, extractedText} = location.state
+    console.log(selectedFile)
+    console.log(extractedText)
+    const [loading, setLoading] = useState(false);
+    const objectUrl = URL.createObjectURL(selectedFile)
+    //Calling Ml Api for extracted text
+    var requestOptions = {
+        headers: { "Content-Type": "application/json" },
+      };
+    const [MlData, setMlData] = useState([]);
+    const GetMlValue = () => {
+    setLoading(true);
+    axios.post('http://localhost:9090/predict', JSON.stringify({ input: extractedText }), requestOptions)
+        .then(response => response)
+        .then(result => {
+        // console.log(raw)
+        const mdata = result.data['response']
+        const len = mdata.length
+        console.log(len)
+        //filtering data to remove tags
+        var filteredMData = mdata.slice(1, mdata.length - 1);
+        //joining data to formulate a sentence  
+        var str = filteredMData.join(' ');
+        //Removing Non-Ascii characters from the string
+        var ustr = str.normalize('NFD').replace(/[\u2580-\u259F]/g, '');;
+        setMlData(ustr)
+        console.log(ustr)
+        setLoading(false);
+        })
+        .catch(error => setLoading(false));  
+    }
     return (
         <div className = {styles.main}>
             <Header/>
@@ -28,22 +64,28 @@ const ImageTranslation = () => {
             <div className = {styles.container}>
                 <div className = {styles.translateContainer} >
                     <div className = {styles.imageContainer}>
-                        <img className={styles.image} src = {test123} />
+                        <img className={styles.image} src = {objectUrl} />
                     </div>
 
                     <div className = {styles.textContainer}>
                         <div className= {styles.textContainerText}>
-                            <h1>
-                                <FormattedMessage
+                            <h1> 
+                                { extractedText?
+                                    <span>{extractedText}</span>
+                                    :
+                                    <FormattedMessage 
                                     id = "imageTranslation.textImage"
-                                /> 
+                                />} 
                             </h1>
                         </div>
                         <div className= {styles.textContainerSuggestion}>
                             <h1>
-                                <FormattedMessage
+                            { extractedText?
+                                    <span>{MlData}</span>
+                                    :
+                                    <FormattedMessage 
                                     id = "imageTranslation.suggestion"
-                                /> 
+                                />} 
                             </h1>
                         </div>
                     </div>
@@ -58,14 +100,15 @@ const ImageTranslation = () => {
                 </StyleRoot>
 
                 <div className= {styles.submit}>
-                    <button className= {styles.submitButton}>
-                        <FormattedMessage
-                            id = "imageTranslation.nextButton"
-                        /> 
+                    <button onClick={GetMlValue} className= {styles.submitButton}>
+                        Translate
                     </button>
                 </div>
 
             </div>
+            {loading && <div className={styles.loaderView}>
+            <img className={styles.logoImg} src={Logo} />
+            </div>}
         </div>
     )
 }
